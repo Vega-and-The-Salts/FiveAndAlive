@@ -9,13 +9,19 @@ from flask import (
     redirect)
     
 import pymysql
+from flask_cors import CORS
 from config import remote_db_endpoint, remote_db_port
 from config import remote_db_name, remote_db_user, remote_db_pwd
 pymysql.install_as_MySQLdb()
 from sqlalchemy import func, create_engine
 
 app = Flask(__name__)
-
+CORS(app)
+cors = CORS(app, resources={
+    r"/*": {
+        "origins" : "*"
+    }
+})
 engine = create_engine(f"mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_endpoint}:{remote_db_port}/{remote_db_name}")
 
 # create route that renders index.html template
@@ -37,6 +43,7 @@ def send():
         Discovery = request.form["Discovery"]
         Score = request.form["Score"]
 
+        
         game_df = pd.DataFrame({
             'Username': [Username],
             'Age': [age],
@@ -46,7 +53,7 @@ def send():
             'Discovery': [Discovery],
             'Score' : [Score]
         })
-
+        print(game_df)
         game_df.to_sql('game', con=conn, if_exists='append', index=False)
 
         return redirect("/", code=302)
@@ -135,7 +142,7 @@ def highscore():
     conn = engine.connect()
     query = '''
         select Username, Score
-        From game.game
+        From game
         ORDER BY Score DESC
         Limit 10;
     '''
@@ -149,7 +156,7 @@ def recentplayers():
     conn = engine.connect()
     query = '''
         select Username, Score
-        From game.game
+        From game
         ORDER BY Time DESC
         Limit 10;
     '''
