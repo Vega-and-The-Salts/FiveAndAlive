@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--
+    Name: MonsterPlay - eSports and Gaming HTML Template
+    Version: 1.0.2
+    Author: nK
+    Website: https://nkdev.info/
+    Purchase: https://themeforest.net/user/_nk/portfolio
+    Support: https://nk.ticksy.com/
+    License: You must have a valid license purchased only from ThemeForest (the above link) in order to legally use the theme for your project.
+    Copyright 2020.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>5 & Alive</title>
+        <meta name="description" content="MonsterPlay - Superpower for Gaming Websites">
+        <meta name="keywords" content="gaming, game, esports, community, template, html, bootstrap, webpack">
+        <meta name="author" content="nK">
+        <link rel="icon" type="image/png" href="mario.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- START: Styles -->
+        <!-- Adobe Fonts -->
+        <link rel="stylesheet" href="https://use.typekit.net/vgd1cli.css">
+        <!-- Bootstrap -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}"/>
+        <!-- Swiper -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='vendor/swiper/css/swiper.min.css') }}"/>
+        <!-- Fancybox -->
+        <link rel="stylesheet" href="{{ url_for('static',filename='vendor/fancybox/dist/jquery.fancybox.min.css') }}" />
+        <!-- Revolution Slider -->
+        <link rel="stylesheet" href="{{ url_for('static',filename='vendor/slider-revolution/css/settings.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static',filename='vendor/slider-revolution/css/layers.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static',filename='vendor/slider-revolution/css/navigation.css') }}" />
+        <!-- MonsterPlay -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/monsterplay.css') }}">
+        <!-- RTL (uncomment this to enable RTL support) -->
+        <!-- <link rel="stylesheet" href="assets/css/monsterplay-rtl.min.css" /> -->
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/custom.css') }}"> 
+        <link rel="shortcut icon" href="{{ url_for('static',filename='TemplateData/favicon.ico') }}">
+        <!-- END: Styles -->
+        <!-- jQuery -->
+        <script src= "{{ url_for('static',filename='vendor/jquery/dist/jquery.min.js') }}"></script>
+                <!-- Preloader -->
+        <script src="{{ url_for('static',filename='js/preloader.min.js') }}"></script>
+        <script src= "{{ url_for('static',filename='js/shared.loader.js') }}"></script>
+        <!--<script src= "{{ url_for('static',filename='js/shared.data.gz') }}"></script>
+        <script src= "{{ url_for('static',filename='js/shared.framework.js.gz') }}"></script>
+        <script src= "{{ url_for('static',filename='js/shared.wasm.gz') }}"></script>
+        -->
+    </head>
+    <body>
+        <!-- Preloader -->
+        <div class="mpl-preloader">
+            <div class="mpl-preloader-content">
+                <div class="mpl-preloader-title display-1 h1">5&Alive</div>
+                <div class="mpl-preloader-progress">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="mpl-preloader-bg"></div>
+        <!-- /Preloader -->
+        <!-- Navbar -->
+        <nav class="mpl-navbar-top mpl-navbar">
+            <div class="mpl-navbar-mobile-overlay"></div>
+            <div class="container mpl-navbar-container">
+                <a href="#" class="mpl-navbar-toggle"></a>
+                <div class="mpl-navbar-brand">
+                    <a href="index.html">
+                        <img src="{{ url_for('static',filename='images/5logo.png') }}" alt="">
+                    </a>
+                </div>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="#first">Quest</a></li>
+                        <li><a href="#second">Form</a></li>
+                        <li><a href="#third">Statistics</a></li>
+                        <li><a href="#fourth">About</a></li>
+                    </ul>
+                </nav>
+        </nav>
+    
+    <div class="plates">
+      <div class="row">
+        <div class='col-md-12'>
+            <section id="first">
+              <div id="unity-container" class="unity-desktop">
+                <canvas id="unity-canvas"></canvas>
+                <div id="unity-loading-bar">
+                  <div id="unity-logo"></div>
+                  <div id="unity-progress-bar-empty">
+                    <div id="unity-progress-bar-full"></div>
+                  </div>
+                </div>
+                <div id="unity-footer">
+                  <div id="unity-webgl-logo"></div>
+                  <div id="unity-fullscreen-button"></div>
+                  <div id="unity-build-title"><b>Song Credit:</b> Andrey Vinogradov</div>
+                </div>
+              </div>
+                <script>
+                  
+                  var buildUrl = "Build";
+                  var loaderUrl = buildUrl + "/shared.loader.js";
+                  var config = {
+                    dataUrl: buildUrl + "/shared.data.gz",
+                    frameworkUrl: buildUrl + "/shared.framework.js.gz",
+                    codeUrl: buildUrl + "/shared.wasm.gz",
+                    streamingAssetsUrl: "StreamingAssets",
+                    companyName: "test",
+                    productName: "Mario3D",
+                    productVersion: "0.1",
+                  };
+                
+                      var container = document.querySelector("#unity-container");
+                      var canvas = document.querySelector("#unity-canvas");
+                      var loadingBar = document.querySelector("#unity-loading-bar");
+                      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+                      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+                
+                      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                        container.className = "unity-mobile";
+                        config.devicePixelRatio = 1;
+                      } else {
+                        canvas.style.width = "1000px";
+                        canvas.style.height = "650px";
+                      }
+                      loadingBar.style.display = "block";
+                
+                      var script = document.createElement("script");
+                      script.src = loaderUrl;
+                      script.onload = () => {
+                        createUnityInstance(canvas, config, (progress) => {
+                          progressBarFull.style.width = 100 * progress + "%";
+                        }).then((unityInstance) => {
+                          loadingBar.style.display = "none";
+                          fullscreenButton.onclick = () => {
+                            unityInstance.SetFullscreen(1);
+                          };
+                        }).catch((message) => {
+                          alert(message);
+                        });
+                      };
+                      document.body.appendChild(script);
+                </script>
+              </div>
+            </section> <!-- end of section .first -->
+          </div> <!-- end of div .col-md-9 -->
+        </div> <!-- end of div .row -->
+        <section id="second">
+            <div class="container">
+                <!--<a href="/" class="btn btn-primary" role="button">View Chart</a>-->
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="gaming"><img src="{{ url_for('static',filename='images/gamingtitle.png') }}" alt="title" width="600" height="100"></div>
+                  <form method="POST" action="/survey" role="form", name="survey">
+                    <div class="form-group">
+                      <label id="question" for="inputSystem">1. What gaming system do you use most?</label>
+                      <br>
+                      <select id="inputGaming" name="Gaming">
+                        <option value="Playstation">Playstation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="GameCube">GameCube</option>
+                        <option value="PC">PC</option>
+                        <option value="Other">Other</option>
+                        <option value="NA">None of the above</option>
+                      </select>  
+                    </div>
+                    <div class="form-group">
+                      <label id="question" for="inputSystem">2. How many hours do you play per week?</label>
+                      <br>
+                      <select id="inputSystem" name="Hours">
+                        <option value="0-10">0-10</option>
+                        <option value="11-15">11-15</option>
+                        <option value="16-30">16-30</option>
+                        <option value="30+">30+</option>
+                        <option value="NA">N/A</option>
+                      </select>  
+                    </div>
+                    <div class="form-group">
+                      <label id="question" for="inputJob">3. Has your playing of video games negatively affected your job attendance or punctuality?
+                      </label>
+                      <br>
+                      <select id="inputJob" name="Job performance">
+                        <option value="Not at all">Not at all</option>
+                        <option value="A little">A little</option>
+                        <option value="A lot">A lot</option>
+                        <option value="NA">N/A</option>
+                      </select>  
+                    </div>
+                    <div class="form-group">
+                      <label id="question" for="inputHelp">4. How do you generally feel while playing video games?:
+                      </label>
+                      <br>
+                      <select id="inputHelp" name="Help">
+                        <option value="Calm">Calm</option>
+                        <option value="Excited">Excited</option>
+                        <option value="Angry">Angry</option>
+                        <option value="Paranoid">Paranoid</option>
+                        <option value="None of the above">None of the above</option>
+                      </select>  
+                    </div>
+                    <div class="form-group">
+                      <label id="question" for="inputCommunity">5. How do you find the gaming community?</label>
+                      <br>
+                      <select id="inputCommunity" name="Community">
+                        <option value="Aggressive">Aggressive</option>
+                        <option value="Fun">Fun</option>
+                        <option value="Boring">Boring</option>
+                        <option value="Other">Other</option>
+                      </select>  
+                    </div>
+                    <div class="form-group">
+                      <label id="question" for="inputPlayers">6. With whom do you play with most while online?
+                      </label>
+                      <br>
+                      <select id="inputPlayers" name="Players">
+                        <option value="Friends">Friends</option>
+                        <option value="Randoms">Randoms</option>
+                        <option value="Family">Family</option>
+                        <option value="Alone">I don't play games with people, they're weird</option>
+                      </select>  
+                    </div>
+                    <div class="form-group">
+                      <label id="question" for="inputRamifications">7. Do you ever wonder about the ramifications of gaming? Do you think that they influence people to behave a certain way?
+                      </label>
+                      <br>
+                      <select id="inputRamifications" name="Ramifications">
+                        <option value="None at all">None at all</option>
+                        <option value="Not very much">Not very much</option>
+                        <option value="A little">A little</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No comment">No comment</option>
+                      </select>  
+                    </div>
+                    <div class="form-group">
+                      <label id="question" for="inputSocialLife">8. Does playing video games affect your social life?
+                      </label>
+                      <br>
+                      <select id="inputSocialLife" name="Social Life">
+                        <option value="Never">Never</option>
+                        <option value="Rarely">Rarely</option>
+                        <option value="Sometimes">Sometimes</option>
+                        <option value="Usually">Usually</option>
+                        <option value="All the time">All the time</option>
+                      </select>  
+                    </div>    
+                    <div class="form-group">
+                        <label id="question" for="inputSleep">9. Has playing video games negatively affected your sleeping habits?
+                        </label>
+                        <br>
+                        <select id="inputSleep" name="Sleeping Habits">
+                          <option value="None at all">Never</option>
+                          <option value="Not very much">Rarely</option>
+                          <option value="A little">Sometimes</option>
+                          <option value="Usually">Usually</option>
+                          <option value="All the time">All the time</option>
+                        </select>  
+                    </div>    
+                    <div class="form-group">
+                          <label id="question" for="inputThoughts">10. Playing video games gives me
+                          </label>
+                          <br>
+                          <select id="inputThoughts" name="Thoughts">
+                            <option value="Stress relief">Stress relief</option>
+                            <option value="Social skills">Social skills</option>
+                            <option value="Hand eye coordination">Hand eye coordination</option>
+                            <option value="A place to escape">A place to escape</option>
+                            <option value="All of the above">All of the above</option>
+                            <option value="None of the above">None of the above</option>
+                          </select>                      
+                    </div>
+                    <input id="submit" type="submit" value="submit" class="btn btn-primary">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="third">
+              <h1> </h1>
+              <p></p>
+          </section>
+        <section id="fourth">
+    
+          <div class="row1">
+            <div class="col-md-12">
+            <div class="column">
+              <div class="John"><img src="{{ url_for('static',filename='images/John.png') }}" alt="John" width="300" height="200"> <h2>John Vega</h2> <h5>Game Developer</h5></div>
+            </div>
+            <div class="column">
+              <div class="Dino"><img src="{{ url_for('static',filename='images/Dino.png') }}" alt="Dino" width="300" height="200"><h2>Dino Molina </h2> <h5>Database Specialist</h5></div>
+            </div>
+            <div class="column">
+              <div class="Trevor"><img src="{{ url_for('static',filename='images/Trevor.png') }}" alt="Trevor" width="300" height="200"><h2>Trevor Doucet</h2> <h5>Web Developer</h5></div>
+            </div>  
+            <div class="column">
+              <div class="Jawaher"><img src="{{ url_for('static',filename='images/Jawaher.png') }}" alt="Jawaher" width="190" height="165"><h2>Jawaher Abdulrahim </h2> <h5>Visualization Expert</h5></div>
+            </div>  
+            <div class="column">
+              <div class="Mike"><img src="{{ url_for('static',filename='images/Mike.png') }}" alt="Mike" width="300" height="200"><h2>Michael Clarke </h2> <h5>Database Specialist</h5></div>
+            </div>  
+          </div>
+         </div>
+          </section>
+    
+     
+
+      <!-- START: Scripts -->
+      <!-- Object Fit Polyfill -->
+      <script src="{{ url_for('static',filename='vendor/object-fit-images/dist/ofi.min.js') }}"></script>
+      <!-- Popper -->
+      <script src="{{ url_for('static',filename='vendor/popper.js/dist/umd/popper.min.js') }}"></script>
+      <!-- ScrollReveal -->
+      <script src="{{ url_for('static',filename='vendor/scrollreveal/dist/scrollreveal.min.js') }}"></script>
+      <!-- Animejs -->
+      <script src="{{ url_for('static',filename='vendor/animejs/lib/anime.min.js') }}"></script>
+      <!-- Bootstrap -->
+      <script src="{{ url_for('static',filename='vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+      <!-- Jarallax -->
+      <script src="{{ url_for('static',filename='vendor/jarallax/dist/jarallax.min.js') }}"></script>
+      <!-- Swiper -->
+      <script src="{{ url_for('static',filename='vendor/swiper/js/swiper.min.js') }}"></script>
+      <!-- Fancybox -->
+      <script src="{{ url_for('static',filename='vendor/fancybox/dist/jquery.fancybox.min.js') }}"></script>
+      <!-- jQuery Countdown -->
+      <script src="{{ url_for('static',filename='vendor/jquery-countdown/dist/jquery.countdown.min.js') }}"></script>
+      <!-- Moment.js -->
+      <script src="{{ url_for('static',filename='vendor/moment/min/moment.min.js') }}"></script>
+      <script src="{{ url_for('static',filename='vendor/moment-timezone/builds/moment-timezone-with-data.min.js') }}"></script>
+      <!-- Revolution Slider -->
+      <script src="{{ url_for('static',filename='vendor/slider-revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+      <script src="{{ url_for('static',filename='vendor/slider-revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+      <!-- ImagesLoaded -->
+      <script src="{{ url_for('static',filename='vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+      <!-- Isotope -->
+      <script src="{{ url_for('static',filename='vendor/isotope-layout/dist/isotope.pkgd.min.js') }}"></script>
+      <!-- Ion Range Slider -->
+      <script src="{{ url_for('static',filename='vendor/ion-rangeslider/js/ion.rangeSlider.min.js') }}"></script>
+      <!-- Bootstrap TouchSpin -->
+      <script src="{{ url_for('static',filename='vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js') }}"></script>
+      <!-- Bootstrap Validator -->
+      <script src="{{ url_for('static',filename='vendor/bootstrap-validator/dist/validator.min.js') }}"></script>
+      <!-- MonsterPlay -->
+      <script src="{{ url_for('static',filename='js/monsterplay.min.js') }}"></script>
+      <script src="{{ url_for('static',filename='js/monsterplay-init.js') }}"></script>
+      <!-- END: Scripts -->
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <body>
+        <div class="container">
+          <div class="jumbotron" style="text-align: center">
+            <h1>Gaming Survey</h1>
+            <!--<a href="/" class="btn btn-primary" role="button">View Chart</a>-->
+          </div>
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <h2>Quick Survey</h2>
+              <form method="POST" action="/survey" role="form", name="survey">
+                <div class="form-group">
+                  <label for="inputSystem">1. What gaming system do you use most?</label>
+                  <br>
+                  <select id="inputGaming" name="Gaming">
+                    <option value="Playstation">Playstation</option>
+                    <option value="Xbox">Xbox</option>
+                    <option value="GameCube">GameCube</option>
+                    <option value="PC">PC</option>
+                    <option value="Other">Other</option>
+                    <option value="NA">None of the above</option>
+                  </select>  
+                </div>
+                <div class="form-group">
+                  <label for="inputSystem">2. How many hours do you play per week?</label>
+                  <br>
+                  <select id="inputSystem" name="Hours">
+                    <option value="0-10">0-10</option>
+                    <option value="11-15">11-15</option>
+                    <option value="16-30">16-30</option>
+                    <option value="30+">30+</option>
+                    <option value="NA">N/A</option>
+                  </select>  
+                </div>
+                <div class="form-group">
+                  <label for="inputJob">3. Has your playing of video games negatively affected your job attendance or punctuality?
+                  </label>
+                  <br>
+                  <select id="inputJob" name="Job performance">
+                    <option value="Not at all">Not at all</option>
+                    <option value="A little">A little</option>
+                    <option value="A lot">A lot</option>
+                    <option value="NA">N/A</option>
+                  </select>  
+                </div>
+                <div class="form-group">
+                  <label for="inputHelp">4. How do you generally feel while playing video games?:
+                  </label>
+                  <br>
+                  <select id="inputHelp" name="Help">
+                    <option value="Calm">Calm</option>
+                    <option value="Excited">Excited</option>
+                    <option value="Angry">Angry</option>
+                    <option value="Paranoid">Paranoid</option>
+                    <option value="None of the above">None of the above</option>
+                  </select>  
+                </div>
+                <div class="form-group">
+                  <label for="inputCommunity">5. How do you find the gaming community?</label>
+                  <br>
+                  <select id="inputCommunity" name="Community">
+                    <option value="Aggressive">Aggressive</option>
+                    <option value="Fun">Fun</option>
+                    <option value="Boring">Boring</option>
+                    <option value="Other">Other</option>
+                  </select>  
+                </div>
+                <div class="form-group">
+                  <label for="inputPlayers">6. With whom do you play with most while online?
+                  </label>
+                  <br>
+                  <select id="inputPlayers" name="Players">
+                    <option value="Friends">Friends</option>
+                    <option value="Randoms">Randoms</option>
+                    <option value="Family">Family</option>
+                    <option value="Alone">I don't play games with people, they're weird</option>
+                  </select>  
+                </div>
+                <div class="form-group">
+                  <label for="inputRamifications">7. Do you ever wonder about the ramifications of gaming? Do you think that they influence people to behave a certain way?
+                  </label>
+                  <br>
+                  <select id="inputRamifications" name="Ramifications">
+                    <option value="None at all">None at all</option>
+                    <option value="Not very much">Not very much</option>
+                    <option value="A little">A little</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No comment">No comment</option>
+                  </select>  
+                </div>
+                <div class="form-group">
+                  <label for="inputSocialLife">8. Does playing video games affect your social life?
+                  </label>
+                  <br>
+                  <select id="inputSocialLife" name="Social Life">
+                    <option value="Never">Never</option>
+                    <option value="Rarely">Rarely</option>
+                    <option value="Sometimes">Sometimes</option>
+                    <option value="Usually">Usually</option>
+                    <option value="All the time">All the time</option>
+                  </select>  
+                </div>    
+                <div class="form-group">
+                    <label for="inputSleep">9. Has playing video games negatively affected your sleeping habits?
+                    </label>
+                    <br>
+                    <select id="inputSleep" name="Sleeping Habits">
+                      <option value="None at all">Never</option>
+                      <option value="Not very much">Rarely</option>
+                      <option value="A little">Sometimes</option>
+                      <option value="Usually">Usually</option>
+                      <option value="All the time">All the time</option>
+                    </select>  
+                </div>    
+                <div class="form-group">
+                      <label for="inputThoughts">10. Playing video games gives me
+                      </label>
+                      <br>
+                      <select id="inputThoughts" name="Thoughts">
+                        <option value="Stress relief">Stress relief</option>
+                        <option value="Social skills">Social skills</option>
+                        <option value="Hand eye coordination">Hand eye coordination</option>
+                        <option value="A place to escape">A place to escape</option>
+                        <option value="All of the above">All of the above</option>
+                        <option value="None of the above">None of the above</option>
+                      </select>                      
+                </div>
+                <input type="submit" value="submit" class="btn btn-primary">
+              </form>
+            </div>
+          </div>
+        </div>
+      </body>
+</html>    
